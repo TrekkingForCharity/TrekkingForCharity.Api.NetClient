@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2006
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{60AFD2A0-394A-42F5-A0A8-3C4A82BB5E40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SharedFiles", "SharedFiles", "{8F13C711-ED19-4335-A513-87F719EE97A1}"
+	ProjectSection(SolutionItems) = preProject
+		source\SharedFiles\GlobalSuppressions.cs = source\SharedFiles\GlobalSuppressions.cs
+		source\SharedFiles\stylecop.json = source\SharedFiles\stylecop.json
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrekkingForCharity.Api.Client", "source\TrekkingForCharity.Api.Client\TrekkingForCharity.Api.Client.csproj", "{28D980BB-1F04-4F3F-9A57-DB9804944CAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{70A9BD1F-7253-4A00-A9F4-FC0B216D253C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28D980BB-1F04-4F3F-9A57-DB9804944CAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28D980BB-1F04-4F3F-9A57-DB9804944CAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28D980BB-1F04-4F3F-9A57-DB9804944CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28D980BB-1F04-4F3F-9A57-DB9804944CAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F13C711-ED19-4335-A513-87F719EE97A1} = {60AFD2A0-394A-42F5-A0A8-3C4A82BB5E40}
+		{28D980BB-1F04-4F3F-9A57-DB9804944CAC} = {60AFD2A0-394A-42F5-A0A8-3C4A82BB5E40}		
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8363A5F8-D5F4-4BC2-90BE-48BB941FDBDA}
+	EndGlobalSection
+EndGlobal
