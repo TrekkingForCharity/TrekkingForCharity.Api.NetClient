@@ -14,31 +14,103 @@ namespace TrekkingForCharity.Api.Client
 {
     public interface IApiClient
     {
+        /// <summary>
+        /// Gets the trek.
+        /// </summary>
+        /// <param name="trekId">The trek identifier.</param>
+        /// <returns></returns>
         Task<Result<Trek>> GetTrek(Guid trekId);
 
-        Task<Result<ExecutionResult, ExecutionResult>> PostTrek(string name, string description, DateTime whenToStart,
-            string bannerImage);
+        /// <summary>
+        /// Posts the trek.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="whenToStart">The when to start.</param>
+        /// <param name="bannerImage">The banner image.</param>
+        /// <returns></returns>
+        Task<Result<ExecutionResult, ExecutionResult>> PostTrek(string name, string description, int whenToStart, string bannerImage);
 
+        /// <summary>
+        /// Gets the waypoints for trek.
+        /// </summary>
+        /// <param name="trekId">The trek identifier.</param>
+        /// <returns></returns>
         Task<Result<ICollection<Waypoint>>> GetWaypointsForTrek(Guid trekId);
 
+        /// <summary>
+        /// Gets the updates for trek.
+        /// </summary>
+        /// <param name="trekId">The trek identifier.</param>
+        /// <returns></returns>
         Task<Result<ICollection<Update>>> GetUpdatesForTrek(Guid trekId);
 
-        Task<Result<ExecutionResult, ExecutionResult>> PutTrek(Guid trekId, string name, string description,
-            DateTime whenToStart, string bannerImage);
+        /// <summary>
+        /// Puts the trek.
+        /// </summary>
+        /// <param name="trekId">The trek identifier.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="whenToStart">The when to start.</param>
+        /// <param name="bannerImage">The banner image.</param>
+        /// <returns></returns>
+        Task<Result<ExecutionResult, ExecutionResult>> PutTrek(Guid trekId, string name, string description, int whenToStart, string bannerImage);
 
-        Task<Result<ExecutionResult, ExecutionResult>> PostWaypoint(Guid trekId, double lng, double lat,
-            DateTime whenToHit);
+        /// <summary>
+        /// Posts the waypoint.
+        /// </summary>
+        /// <param name="trekId">The trek identifier.</param>
+        /// <param name="lng">The LNG.</param>
+        /// <param name="lat">The lat.</param>
+        /// <param name="whenToReach">The when to reach.</param>
+        /// <returns></returns>
+        Task<Result<ExecutionResult, ExecutionResult>> PostWaypoint(Guid trekId, double lng, double lat, int whenToReach);
 
-        Task<Result<ExecutionResult, ExecutionResult>> PutWaypoint(Guid trekId, Guid waypointId, double lng, double lat,
-            DateTime whenToHit);
+        /// <summary>
+        /// Puts the waypoint.
+        /// </summary>
+        /// <param name="trekId">The trek identifier.</param>
+        /// <param name="waypointId">The waypoint identifier.</param>
+        /// <param name="lng">The LNG.</param>
+        /// <param name="lat">The lat.</param>
+        /// <param name="whenToReach">The when to reach.</param>
+        /// <returns></returns>
+        Task<Result<ExecutionResult, ExecutionResult>> PutWaypoint(Guid trekId, int waypointId, double lng, double lat,
+            int whenToReach);
 
-        Task<Result<ExecutionResult, ExecutionResult>> DeleteWaypoint(Guid trekId, Guid waypointId);
+        /// <summary>
+        /// Deletes the waypoint.
+        /// </summary>
+        /// <param name="trekId">The trek identifier.</param>
+        /// <param name="waypointId">The waypoint identifier.</param>
+        /// <returns></returns>
+        Task<Result<ExecutionResult, ExecutionResult>> DeleteWaypoint(Guid trekId, int waypointId);
 
+        /// <summary>
+        /// Posts the update.
+        /// </summary>
+        /// <param name="trekId">The trek identifier.</param>
+        /// <param name="lng">The LNG.</param>
+        /// <param name="lat">The lat.</param>
+        /// <param name="title">The title.</param>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
         Task<Result<ExecutionResult, ExecutionResult>> PostUpdate(Guid trekId, double lng, double lat, string title,
             string message);
 
-        Task<Result<ExecutionResult, ExecutionResult>> HitWaypoint(Guid trekId, Guid waypointId);
+        /// <summary>
+        /// Hits the waypoint.
+        /// </summary>
+        /// <param name="trekId">The trek identifier.</param>
+        /// <param name="waypointId">The waypoint identifier.</param>
+        /// <returns></returns>
+        Task<Result<ExecutionResult, ExecutionResult>> HitWaypoint(Guid trekId, int waypointId);
 
+        /// <summary>
+        /// Starts the trek.
+        /// </summary>
+        /// <param name="trekId">The trek identifier.</param>
+        /// <returns></returns>
         Task<Result<ExecutionResult, ExecutionResult>> StartTrek(Guid trekId);
     }
 }

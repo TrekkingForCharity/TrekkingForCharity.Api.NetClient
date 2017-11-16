@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\source\SharedFiles\GlobalSuppressions.cs" Link="GlobalSuppressions.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AdditionalFiles Include="..\..\source\SharedFiles\stylecop.json" Link="stylecop.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Epoch.net" Version="0.1.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\source\TrekkingForCharity.Api.Client\TrekkingForCharity.Api.Client.csproj" />
+  </ItemGroup>
+
+</Project>

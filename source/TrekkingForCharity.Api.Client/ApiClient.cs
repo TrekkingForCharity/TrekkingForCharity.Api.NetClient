@@ -35,7 +35,7 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsGet<Trek>(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> PostTrek(string name, string description, DateTime whenToStart, string bannerImage)
+        public async Task<Result<ExecutionResult, ExecutionResult>> PostTrek(string name, string description, int whenToStart, string bannerImage)
         {
             var responseMessage = await this._apiInternal.PostTrek(new Trek
             {
@@ -60,7 +60,7 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsGet<ICollection<Update>>(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> PutTrek(Guid trekId, string name, string description, DateTime whenToStart, string bannerImage)
+        public async Task<Result<ExecutionResult, ExecutionResult>> PutTrek(Guid trekId, string name, string description, int whenToStart, string bannerImage)
         {
             var responseMessage = await this._apiInternal.PutTrek(trekId, new Trek
             {
@@ -73,7 +73,7 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> PostWaypoint(Guid trekId, double lng, double lat, DateTime whenToHit)
+        public async Task<Result<ExecutionResult, ExecutionResult>> PostWaypoint(Guid trekId, double lng, double lat, int whenToReach)
         {
             var responseMessage = await this._apiInternal.PostWaypoint(trekId, new Waypoint
             {
@@ -85,7 +85,7 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> PutWaypoint(Guid trekId, Guid waypointId, double lng, double lat, DateTime whenToHit)
+        public async Task<Result<ExecutionResult, ExecutionResult>> PutWaypoint(Guid trekId, int waypointId, double lng, double lat, int whenToReach)
         {
             var responseMessage = await this._apiInternal.PutWaypoint(trekId, waypointId, new Waypoint
             {
@@ -97,7 +97,7 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> DeleteWaypoint(Guid trekId, Guid waypointId)
+        public async Task<Result<ExecutionResult, ExecutionResult>> DeleteWaypoint(Guid trekId, int waypointId)
         {
             var responseMessage = await this._apiInternal.DeleteWaypoint(trekId, waypointId);
 
@@ -117,7 +117,7 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> HitWaypoint(Guid trekId, Guid waypointId)
+        public async Task<Result<ExecutionResult, ExecutionResult>> HitWaypoint(Guid trekId, int waypointId)
         {
             var responseMessage = await this._apiInternal.HitWaypoint(trekId, waypointId);
 
