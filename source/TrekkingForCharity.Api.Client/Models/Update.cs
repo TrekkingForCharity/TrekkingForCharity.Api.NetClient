@@ -18,9 +18,9 @@ namespace TrekkingForCharity.Api.Client.Models
 
         public string Message { get; set; }
 
-        public DateTime WhenCreated { get; set; }
+        public int WhenCreated { get; set; }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public Guid TrekId { get; set; }
     }

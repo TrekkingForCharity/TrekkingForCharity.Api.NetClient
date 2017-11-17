@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrekkingForCharity.Api.Clie
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{70A9BD1F-7253-4A00-A9F4-FC0B216D253C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrekkingForCharity.Api.Client.TestHarness", "tests\TrekkingForCharity.Api.Client.TestHarness\TrekkingForCharity.Api.Client.TestHarness.csproj", "{0D87A8D9-36A8-496F-8FD2-C624CB2267EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrekkingForCharity.Api.Client.TestHarness", "tests\TrekkingForCharity.Api.Client.TestHarness\TrekkingForCharity.Api.Client.TestHarness.csproj", "{0D87A8D9-36A8-496F-8FD2-C624CB2267EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,9 +28,7 @@ Global
 		{28D980BB-1F04-4F3F-9A57-DB9804944CAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28D980BB-1F04-4F3F-9A57-DB9804944CAC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0D87A8D9-36A8-496F-8FD2-C624CB2267EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0D87A8D9-36A8-496F-8FD2-C624CB2267EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0D87A8D9-36A8-496F-8FD2-C624CB2267EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0D87A8D9-36A8-496F-8FD2-C624CB2267EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

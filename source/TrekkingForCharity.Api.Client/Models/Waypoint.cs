@@ -14,11 +14,11 @@ namespace TrekkingForCharity.Api.Client.Models
 
         public double Lat { get; set; }
 
-        public DateTime WhenToHit { get; set; }
+        public int WhenToReach { get; set; }
 
-        public DateTime? WhenHit { get; set; }
+        public int? WhenReached { get; set; }
 
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
         public Guid TrekId { get; set; }
     }

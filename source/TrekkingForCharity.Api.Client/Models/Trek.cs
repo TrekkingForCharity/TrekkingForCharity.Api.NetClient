@@ -18,9 +18,9 @@ namespace TrekkingForCharity.Api.Client.Models
 
         public int Status { get; set; }
 
-        public DateTime WhenToStart { get; set; }
+        public int WhenToStart { get; set; }
 
-        public DateTime? WhenStarted { get; set; }
+        public int? WhenStarted { get; set; }
 
         public Guid Id { get; set; }
 

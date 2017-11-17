@@ -33,19 +33,19 @@ namespace TrekkingForCharity.Api.Client
         Task<HttpResponseMessage> PostWaypoint(Guid trekId, [Body]Waypoint waypoint, [Header("Authorization")] string authorization = "bearer");
 
         [Put("/treks/{trekId}/waypoints/{waypointId}")]
-        Task<HttpResponseMessage> PutWaypoint(Guid trekId, Guid waypointId, [Body]Waypoint waypoint, [Header("Authorization")] string authorization = "bearer");
+        Task<HttpResponseMessage> PutWaypoint(Guid trekId, int waypointId, [Body]Waypoint waypoint, [Header("Authorization")] string authorization = "bearer");
 
         [Delete("/treks/{trekId}/wayoints/{waypointId}")]
-        Task<HttpResponseMessage> DeleteWaypoint(Guid trekId, Guid waypointId, [Header("Authorization")] string authorization = "bearer");
+        Task<HttpResponseMessage> DeleteWaypoint(Guid trekId, int waypointId, [Header("Authorization")] string authorization = "bearer");
 
         [Post("/treks/{trekId}/updates")]
         Task<HttpResponseMessage> PostUpdate(Guid trekId, [Body]Update update, [Header("Authorization")] string authorization = "bearer");
 
         [Put("/treks/{trekId}/updates/{updateId}")]
-        Task<HttpResponseMessage> PutUpdate(Guid trekId, Guid updateId, [Body]Update waypoint, [Header("Authorization")] string authorization = "bearer");
+        Task<HttpResponseMessage> PutUpdate(Guid trekId, int updateId, [Body]Update waypoint, [Header("Authorization")] string authorization = "bearer");
 
         [Post("/treks/{trekId}/waypoints/{waypointId}/hit")]
-        Task<HttpResponseMessage> HitWaypoint(Guid trekId, Guid waypointId, [Header("Authorization")] string authorization = "bearer");
+        Task<HttpResponseMessage> HitWaypoint(Guid trekId, int waypointId, [Header("Authorization")] string authorization = "bearer");
 
         [Post("/treks/{trekId}/start")]
         Task<HttpResponseMessage> StartTrek(Guid trekId, [Header("Authorization")] string authorization = "bearer");

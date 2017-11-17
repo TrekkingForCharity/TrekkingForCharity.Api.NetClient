@@ -79,7 +79,7 @@ namespace TrekkingForCharity.Api.Client
             {
                 Lng = lng,
                 Lat = lat,
-                WhenToHit = whenToHit
+                WhenToReach = whenToReach
             });
 
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
@@ -91,7 +91,7 @@ namespace TrekkingForCharity.Api.Client
             {
                 Lng = lng,
                 Lat = lat,
-                WhenToHit = whenToHit
+                WhenToReach = whenToReach
             });
 
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
