@@ -5,13 +5,10 @@
 // You should have received a copy of the GNU General Public License along with TrekkingForCharity.Api. If not, see http://www.gnu.org/licenses/.
 
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Net.Mime;
-using System.Threading.Tasks;
 using Epoch.net;
-using JWT;
-using JWT.Algorithms;
-using JWT.Serializers;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace TrekkingForCharity.Api.Client.TestHarness
@@ -29,67 +26,26 @@ namespace TrekkingForCharity.Api.Client.TestHarness
 
             var app = serviceProvider.GetService<Application>();
 
-            var token = GenerateToken("abc");
-            Console.Write(token);
-            while (true)
-            {
-                
-            }
-            var client = new ApiClient(new ApiConfiguration());
-            var result = client.PostTrek("Some Trek", "Some Description", DateTime.Now.ToEpoch(), string.Empty);
+            
         }
 
         private static void ConfigureServices(IServiceCollection services)
         {
-            
+            IConfigurationRoot configuration = GetConfiguration();
+            services.AddOptions();
+            services.Configure<Settings>(configuration.GetSection("MyOptions"));
+
+            services.AddTransient<Application>();
         }
 
-        public static string GenerateToken(string userId)
+        
+
+        private static IConfigurationRoot GetConfiguration()
         {
-            IDateTimeProvider provider = new UtcDateTimeProvider();
-            var now = provider.GetNow();
-
-            var unixEpoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc); // or use JwtValidator.UnixEpoch
-            var secondsSinceEpoch = Math.Round((now - unixEpoch).TotalSeconds);
-            var payload = new Dictionary<string, object>
-            {
-                {"claim1", 0},
-                {"claim2", "claim2-value"},
-                { "exp", secondsSinceEpoch }
-            };
-            var secret =
-                "";
-
-            IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
-            IJsonSerializer serializer = new JsonNetSerializer();
-            IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
-            IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
-            
-            var token = encoder.Encode(payload, secret);
-            return token;
-        }
-    }
-
-    public class Application
-    {
-        ILogger _logger;
-
-        public Application(IOptions<MyOptions> settings)
-        {
-            _logger = logger;
-            _settings = settings.Value;
-        }
-
-        public async Task Run()
-        {
-            try
-            {
-                _logger.LogInformation($"This is a console application for {_settings.Name}");
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex.ToString());
-            }
+            return new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile($"appsettings.json", optional: true)
+                .Build();
         }
     }
 }

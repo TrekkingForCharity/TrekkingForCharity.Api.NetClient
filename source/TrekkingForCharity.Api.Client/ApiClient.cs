@@ -35,7 +35,7 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsGet<Trek>(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> PostTrek(string name, string description, int whenToStart, string bannerImage)
+        public async Task<ExecutionResult> PostTrek(string name, string description, int whenToStart, string bannerImage)
         {
             var responseMessage = await this._apiInternal.PostTrek(new Trek
             {
@@ -60,7 +60,7 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsGet<ICollection<Update>>(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> PutTrek(Guid trekId, string name, string description, int whenToStart, string bannerImage)
+        public async Task<ExecutionResult> PutTrek(Guid trekId, string name, string description, int whenToStart, string bannerImage)
         {
             var responseMessage = await this._apiInternal.PutTrek(trekId, new Trek
             {
@@ -73,7 +73,7 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> PostWaypoint(Guid trekId, double lng, double lat, int whenToReach)
+        public async Task<ExecutionResult> PostWaypoint(Guid trekId, double lng, double lat, int whenToReach)
         {
             var responseMessage = await this._apiInternal.PostWaypoint(trekId, new Waypoint
             {
@@ -85,7 +85,7 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> PutWaypoint(Guid trekId, int waypointId, double lng, double lat, int whenToReach)
+        public async Task<ExecutionResult> PutWaypoint(Guid trekId, int waypointId, double lng, double lat, int whenToReach)
         {
             var responseMessage = await this._apiInternal.PutWaypoint(trekId, waypointId, new Waypoint
             {
@@ -97,14 +97,14 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> DeleteWaypoint(Guid trekId, int waypointId)
+        public async Task<ExecutionResult> DeleteWaypoint(Guid trekId, int waypointId)
         {
             var responseMessage = await this._apiInternal.DeleteWaypoint(trekId, waypointId);
 
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> PostUpdate(Guid trekId, double lng, double lat, string title, string message)
+        public async Task<ExecutionResult> PostUpdate(Guid trekId, double lng, double lat, string title, string message)
         {
             var responseMessage = await this._apiInternal.PostUpdate(trekId, new Update
             {
@@ -117,14 +117,14 @@ namespace TrekkingForCharity.Api.Client
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> HitWaypoint(Guid trekId, int waypointId)
+        public async Task<ExecutionResult> HitWaypoint(Guid trekId, int waypointId)
         {
             var responseMessage = await this._apiInternal.HitWaypoint(trekId, waypointId);
 
             return await this.ProcessHttpResponseMessageAsPost(responseMessage);
         }
 
-        public async Task<Result<ExecutionResult, ExecutionResult>> StartTrek(Guid trekId)
+        public async Task<ExecutionResult> StartTrek(Guid trekId)
         {
             var responseMessage = await this._apiInternal.StartTrek(trekId);
 
@@ -147,17 +147,22 @@ namespace TrekkingForCharity.Api.Client
             throw new ApiException();
         }
 
-        private async Task<Result<ExecutionResult, ExecutionResult>> ProcessHttpResponseMessageAsPost(HttpResponseMessage responseMessage)
+        private async Task<ExecutionResult> ProcessHttpResponseMessageAsPost(HttpResponseMessage responseMessage)
         {
-            if (responseMessage.IsSuccessStatusCode)
+            if (responseMessage.IsSuccessStatusCode || responseMessage.StatusCode == HttpStatusCode.BadRequest ||
+                responseMessage.StatusCode == (HttpStatusCode) 411)
             {
-                return Result.Ok<ExecutionResult, ExecutionResult>(
-                    await this.DeserializeHttpResponseMessage(responseMessage));
+                var result = await this.DeserializeHttpResponseMessage(responseMessage);
+                return result;
             }
-
-            if (responseMessage.StatusCode == HttpStatusCode.BadRequest || responseMessage.StatusCode == (HttpStatusCode)411)
+            else
             {
-                return Result.Fail<ExecutionResult, ExecutionResult>(await this.DeserializeHttpResponseMessage(responseMessage));
+                return new ExecutionResult
+                {
+                    ErrorCode = $"HTTPError-{(int) responseMessage.StatusCode}",
+                    FailMessage = responseMessage.ReasonPhrase,
+                    Success = false
+                };
             }
 
             throw new ApiException();

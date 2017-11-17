@@ -29,7 +29,7 @@ namespace TrekkingForCharity.Api.Client
         /// <param name="whenToStart">The when to start.</param>
         /// <param name="bannerImage">The banner image.</param>
         /// <returns></returns>
-        Task<Result<ExecutionResult, ExecutionResult>> PostTrek(string name, string description, int whenToStart, string bannerImage);
+        Task<ExecutionResult> PostTrek(string name, string description, int whenToStart, string bannerImage);
 
         /// <summary>
         /// Gets the waypoints for trek.
@@ -54,7 +54,7 @@ namespace TrekkingForCharity.Api.Client
         /// <param name="whenToStart">The when to start.</param>
         /// <param name="bannerImage">The banner image.</param>
         /// <returns></returns>
-        Task<Result<ExecutionResult, ExecutionResult>> PutTrek(Guid trekId, string name, string description, int whenToStart, string bannerImage);
+        Task<ExecutionResult> PutTrek(Guid trekId, string name, string description, int whenToStart, string bannerImage);
 
         /// <summary>
         /// Posts the waypoint.
@@ -64,7 +64,7 @@ namespace TrekkingForCharity.Api.Client
         /// <param name="lat">The lat.</param>
         /// <param name="whenToReach">The when to reach.</param>
         /// <returns></returns>
-        Task<Result<ExecutionResult, ExecutionResult>> PostWaypoint(Guid trekId, double lng, double lat, int whenToReach);
+        Task<ExecutionResult> PostWaypoint(Guid trekId, double lng, double lat, int whenToReach);
 
         /// <summary>
         /// Puts the waypoint.
@@ -75,7 +75,7 @@ namespace TrekkingForCharity.Api.Client
         /// <param name="lat">The lat.</param>
         /// <param name="whenToReach">The when to reach.</param>
         /// <returns></returns>
-        Task<Result<ExecutionResult, ExecutionResult>> PutWaypoint(Guid trekId, int waypointId, double lng, double lat,
+        Task<ExecutionResult> PutWaypoint(Guid trekId, int waypointId, double lng, double lat,
             int whenToReach);
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace TrekkingForCharity.Api.Client
         /// <param name="trekId">The trek identifier.</param>
         /// <param name="waypointId">The waypoint identifier.</param>
         /// <returns></returns>
-        Task<Result<ExecutionResult, ExecutionResult>> DeleteWaypoint(Guid trekId, int waypointId);
+        Task<ExecutionResult> DeleteWaypoint(Guid trekId, int waypointId);
 
         /// <summary>
         /// Posts the update.
@@ -95,7 +95,7 @@ namespace TrekkingForCharity.Api.Client
         /// <param name="title">The title.</param>
         /// <param name="message">The message.</param>
         /// <returns></returns>
-        Task<Result<ExecutionResult, ExecutionResult>> PostUpdate(Guid trekId, double lng, double lat, string title,
+        Task<ExecutionResult> PostUpdate(Guid trekId, double lng, double lat, string title,
             string message);
 
         /// <summary>
@@ -104,13 +104,13 @@ namespace TrekkingForCharity.Api.Client
         /// <param name="trekId">The trek identifier.</param>
         /// <param name="waypointId">The waypoint identifier.</param>
         /// <returns></returns>
-        Task<Result<ExecutionResult, ExecutionResult>> HitWaypoint(Guid trekId, int waypointId);
+        Task<ExecutionResult> HitWaypoint(Guid trekId, int waypointId);
 
         /// <summary>
         /// Starts the trek.
         /// </summary>
         /// <param name="trekId">The trek identifier.</param>
         /// <returns></returns>
-        Task<Result<ExecutionResult, ExecutionResult>> StartTrek(Guid trekId);
+        Task<ExecutionResult> StartTrek(Guid trekId);
     }
 }
